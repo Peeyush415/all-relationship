@@ -21,23 +21,28 @@ class HusbandController extends Controller
         return view('husband-wife.index',compact('husbands'));
     }
 
-    public function seed()
+    public function create()
     {
-        $faker = Faker::create();
 
-        for($i = 0; $i < 10; $i++){
+        return view('husband-wife.create');
 
-            $husband=Husband::create([
-                'name' => $faker->name,
-            ]);
+    }
 
-            $wife=Wife::create([
-                'name' => $faker->name,
-                'husband_id' => $husband->id,
-            ]);
-        }
+    public function store(Request $request)
+    {
 
-        return redirect()->back();
+        $husband = Husband::create ([
+            'name' => $request->input('husband_name')
+        ]);
+
+        // $wifeData=array_merge($request->all(),['husband_id' => $husband->id]);
+        $wifeData=[
+            'name'       => $request->input('wife_name'),
+            'husband_id' => $husband->id
+        ];
+        $wife = Wife::create ($wifeData);
+
+        return redirect()->route('husband-wife.index');
     }
 
 

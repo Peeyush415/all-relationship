@@ -18,6 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/sample-data',[HusbandController::class,'insertSampleRecord']);
-Route::get('/husband-wife',[HusbandController::class,'index'])->name('husaband_wife_index');
-// Route::get('/husband-wife/fake',[HusbandController::class,'seed'])->name('husaband_wife_index');
+Route::get('/husband-wife',[HusbandController::class,'index'])->name('husband-wife.index');
+Route::get('/husband-wife/create',[HusbandController::class,'create'])->name('husband-wife.create');
+Route::post('/husband-wife/store',[HusbandController::class,'store'])->name('husband-wife.store');
