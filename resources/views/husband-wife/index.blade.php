@@ -5,24 +5,35 @@
 @section('content')
     <table border="2">
         <tr>
-            <th>Husband</th>
-            <th>Wife</th>
+            <th>Husband </th>
+            <th>Wife </th>
             <th>
                 Action/
                 <a href="{{ route('husband-wife.create') }}"><button>Add New Pair</button></a>
             </th>
         </tr>
-
-        @foreach ($husbands as $husband )
         <tr>
-            <td>{{ $husband->name }}</td>
-            <td>{{ $husband->wife ? $husband->wife->name : 'No Wife' }}</td>
-            <td>
-                <button>Edit</button>
-                <button>Delete</button>
-            </td>
+            <td colspan="3"> @include('husband-wife.search-husband') </td>
         </tr>
-        @endforeach
+
+        @if ($husbands->isEmpty())
+            <tr>
+               <td colspan="3"> @include('husband-wife.no-data-available') </td>
+            </tr>
+
+        @elseif (!$husbands->isEmpty())
+                @foreach ($husbands as $husband )
+                <tr>
+                    <td>{{ $husband->name }}</td>
+                    <td>{{ $husband->wife ? $husband->wife->name : 'No Wife' }}</td>
+                    <td>
+                        <a href="{{ route('husband-wife.edit',$husband->id) }}"><button>Edit</button></a>
+                        <button>Delete</button>
+                    </td>
+                </tr>
+                @endforeach
+
+        @endif
 
     </table>
 @endsection
