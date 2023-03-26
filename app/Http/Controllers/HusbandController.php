@@ -99,6 +99,19 @@ class HusbandController extends Controller
 
     }
 
+    public function destroy ($id)
+    {
+
+        $husband = Husband::with('wife')->find($id);
+
+        if($husband){
+            $husband->delete();
+        }
+
+        return redirect()->route('husband-wife.index');
+
+    }
+
 
 
 

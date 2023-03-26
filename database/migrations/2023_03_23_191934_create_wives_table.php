@@ -15,7 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('husband_id');
-            $table->foreign('husband_id')->references('id')->on('husbands');
+            $table->foreign('husband_id')
+                  ->references('id')
+                  ->on('husbands')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
             $table->timestamps();
         });
     }

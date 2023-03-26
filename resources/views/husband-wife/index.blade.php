@@ -28,7 +28,11 @@
                     <td>{{ $husband->wife ? $husband->wife->name : 'No Wife' }}</td>
                     <td>
                         <a href="{{ route('husband-wife.edit',$husband->id) }}"><button>Edit</button></a>
-                        <button>Delete</button>
+                        <form action="{{ route('husband-wife.destroy',$husband->id) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <a ><button type="submit">Delete</button></a>
+                        </form>
                     </td>
                 </tr>
                 @endforeach

@@ -23,3 +23,4 @@ Route::get('/husband-wife/create',[HusbandController::class,'create'])->name('hu
 Route::post('/husband-wife/store',[HusbandController::class,'store'])->name('husband-wife.store');
 Route::get('/husband-wife/{id}/edit',[HusbandController::class,'edit'])->name('husband-wife.edit');
 Route::patch('/husband-wife/{id}/update',[HusbandController::class,'update'])->name('husband-wife.update');
+Route::delete('/husband-wife/{id}/delete',[HusbandController::class,'destroy'])->name('husband-wife.destroy');
