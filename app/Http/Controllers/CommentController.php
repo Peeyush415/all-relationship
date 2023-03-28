@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -41,10 +42,15 @@ class CommentController extends Controller
 
         $post_id = (int) $request->input('post_id');
 
-        $comment = new Comment();
-        $comment->body =  $request->input('body');
-        $comment->post_id = $post_id;
-        $comment->save();
+        // $comment = new Comment();
+        // $comment->body =  $request->input('body');
+        // $comment->post_id = $post_id;
+        // $comment->save();
+
+        $post=Post::find($post_id);
+        $comment=new Comment(['body' => $request->input('body')]);
+        $post->comments()->save($comment);
+
 
         return redirect()->route('post-comments.index')
         ->with('Success','Comment Added Succussfull');

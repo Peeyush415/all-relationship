@@ -13,7 +13,7 @@
         </tr>
         @foreach ($posts as $post )
             <tr>
-                <td>{{ $post->title }}</td>
+                <td>@include('post-comments.post',['post_title' => $post->title,'post_id' => $post->id])</td>
                 <td>{{ $post->body }}</td>
                 <td>
                     <ol>
@@ -22,7 +22,8 @@
                         @endforeach
                             <li>
                                 {{-- @include('post-comments.create_comment',['post_id' => $post->id]) --}}
-                                @include('post-comments.create_comment',['post_id' => 1])
+
+                                @include('post-comments.create_comment',['post_id' => $post->id])
                             </li>
                     </ol>
                 </td>

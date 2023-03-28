@@ -30,5 +30,6 @@ Route::delete('/husband-wife/{id}/delete',[HusbandController::class,'destroy'])-
 
 Route::get('/post-comments',[PostController::class,'index'])->name('post-comments.index');
 Route::get('/post-comments/create-post',[PostController::class,'create'])->name('post-comments.create-post');
+Route::delete('/post-comments/{id}/delete-post',[PostController::class,'destroy'])->name('post-comments.destroy-post');
 Route::post('/post-comments/create-post',[PostController::class,'store'])->name('post-comments.store-post');
 Route::post('/post-comments/create-comment',[CommentController::class,'store'])->name('post-comments.store-comment');

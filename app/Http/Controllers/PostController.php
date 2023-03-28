@@ -62,8 +62,11 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        //
+        Post::with('comments')->find($id)->delete(); // delete the post and comment both
+        // Post::find($id)->comments()->delete(); //delete the comments only
+
+        return redirect()->route('post-comments.index');
     }
 }
